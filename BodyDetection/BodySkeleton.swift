@@ -6,6 +6,7 @@
 //  Copyright © 2022 Apple. All rights reserved.
 //
 
+// This codes are based on https://www.youtube.com/watch?v=nBZ-dglGow0
 import Foundation
 import ARKit
 import RealityKit
@@ -84,29 +85,6 @@ class BodySkeleton: Entity {
             entity.look(at: skeletonBone.toJoint.position, from: skeletonBone.centerPosition, relativeTo: nil)
         }
     }
-
-    /*
-    func update(with bodyAnchor: ARBodyAnchor) {
-        let rootPosition = simd_make_float3(bodyAnchor.transform.columns.3)
-        for jointName in ARSkeletonDefinition.defaultBody3D.jointNames {
-            if let jointEntity = joints[jointName],
-                let jointEntityTransform = bodyAnchor.skeleton.modelTransform(for: ARSkeleton.JointName(rawValue: jointName) ) {
-                let jointEntityOffsetFromRoot = simd_make_float3(jointEntityTransform.columns.3)
-                jointEntity.position = rootPosition + jointEntityOffsetFromRoot
-                jointEntity.orientation = Transform(matrix: jointEntityTransform).rotation
-            }
-        }
-
-        for bone in Bones.allCases {
-            let boneName = bone.name
-            guard let entity = bones[boneName],
-                  let skeletonBone = createSkeletonBone(bone: bone, bodyAnchor: bodyAnchor) else { continue }
-            entity.position = skeletonBone.centerPosition
-            entity.look(at: skeletonBone.toJoint.position, from: skeletonBone.centerPosition, relativeTo: nil)
-        }
-    }
-    */
-
 
     required init() {
         fatalError("init() has not been implemented")

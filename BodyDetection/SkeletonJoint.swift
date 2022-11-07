@@ -8,6 +8,7 @@
 
 import Foundation
 
+// This codes are based on https://www.youtube.com/watch?v=nBZ-dglGow0
 struct SkeletonJoint {
     let name: String
     var position: SIMD3<Float>

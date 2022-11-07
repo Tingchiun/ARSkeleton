@@ -8,6 +8,7 @@
 
 import Foundation
 
+// This codes are based on https://www.youtube.com/watch?v=nBZ-dglGow0
 enum Bones: CaseIterable {
     case leftShoulderToLeftArm
     case leftArmToLeftForeArm

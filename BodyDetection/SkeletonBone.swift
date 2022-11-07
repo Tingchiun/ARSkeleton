@@ -9,6 +9,7 @@
 import Foundation
 import RealityKit
 
+// This codes are based on https://www.youtube.com/watch?v=nBZ-dglGow0
 struct SkeletonBone {
     var fromJoint: SkeletonJoint
     var toJoint: SkeletonJoint
