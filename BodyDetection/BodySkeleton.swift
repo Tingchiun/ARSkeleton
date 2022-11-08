@@ -108,11 +108,9 @@ class BodySkeleton: Entity {
         let rootOrientation = Transform(matrix: bodyAnchor.transform).rotation
 
         let jointFromEntityOffsetFromRoot = simd_make_float3(fromJointEntityTransform.columns.3)
-        // let jointFromEntityPosition = jointFromEntityOffsetFromRoot + rootPosition
         let jointFromEntityPosition = rootOrientation.act(jointFromEntityOffsetFromRoot) + rootPosition
 
         let jointToEntityOffsetFromRoot = simd_make_float3(toJointEntityTransform.columns.3)
-        // let jointToEntityPosition = jointToEntityOffsetFromRoot + rootPosition
         let jointToEntityPosition = rootOrientation.act(jointToEntityOffsetFromRoot) + rootPosition
 
         let fromJoint = SkeletonJoint(name: bone.jointFromName, position: jointFromEntityPosition)
@@ -120,27 +118,6 @@ class BodySkeleton: Entity {
 
         return SkeletonBone(fromJoint: fromJoint, toJoint: toJoint)
     }
-    /*
-    private func createSkeletonBone(bone: Bones, bodyAnchor: ARBodyAnchor) -> SkeletonBone? {
-        guard let fromJointEntityTransform = bodyAnchor.skeleton.modelTransform(for: ARSkeleton.JointName(rawValue: bone.jointFromName) ),
-              let toJointEntityTransform = bodyAnchor.skeleton.modelTransform(for: ARSkeleton.JointName(rawValue: bone.jointToName))
-        else {
-            return nil
-        }
-
-        let rootPosition = simd_make_float3(bodyAnchor.transform.columns.3)
-        let jointFromEntityOffsetFromRoot = simd_make_float3(fromJointEntityTransform.columns.3)
-        let jointFromEntityPosition = jointFromEntityOffsetFromRoot + rootPosition
-
-        let jointToEntityOffsetFromRoot = simd_make_float3(toJointEntityTransform.columns.3)
-        let jointToEntityPosition = jointToEntityOffsetFromRoot + rootPosition
-
-        let fromJoint = SkeletonJoint(name: bone.jointFromName, position: jointFromEntityPosition)
-        let toJoint = SkeletonJoint(name: bone.jointToName, position: jointToEntityPosition)
-
-        return SkeletonBone(fromJoint: fromJoint, toJoint: toJoint)
-    }
-     */
 
 
     private func createBoneEntity(for skeletonBone: SkeletonBone, diameter: Float = 0.04, color: UIColor = .white) -> Entity {
