@@ -41,6 +41,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         
         // Asynchronously load the 3D character.
         var cancellable: AnyCancellable? = nil
+        // how to make model : https://developer.apple.com/documentation/arkit/content_anchors/rigging_a_model_for_motion_capture?language=objc
         cancellable = Entity.loadBodyTrackedAsync(named: "character/robot").sink(
             receiveCompletion: { completion in
                 if case let .failure(error) = completion {
@@ -59,7 +60,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         })
     }
 
-    func skeletonSession(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
+    func skeletonSessionHandler(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
         for anchor in anchors {
             guard let bodyAnchor = anchor as? ARBodyAnchor else { continue }
             if let skeleton = bodySkeleton {
@@ -72,7 +73,7 @@ class ViewController: UIViewController, ARSessionDelegate {
     }
 
     func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-        skeletonSession(session, didUpdate: anchors)
+        skeletonSessionHandler(session, didUpdate: anchors)
         for anchor in anchors {
             guard let bodyAnchor = anchor as? ARBodyAnchor else { continue }
 

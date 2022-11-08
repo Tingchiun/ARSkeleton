@@ -42,11 +42,9 @@ class BodySkeleton: Entity {
             case _ where jointName.hasPrefix("left_hand") || jointName.hasPrefix("right_hand"):
                 joinRadius *= 0.25
                 jointColor = .yellow
-                // continue
             case _ where jointName.hasPrefix("left_toes") || jointName.hasPrefix("right_toes"):
                 joinRadius *= 0.5
                 jointColor = .yellow
-                // continue
             default:
                 joinRadius = 0.05
                 jointColor = .green
